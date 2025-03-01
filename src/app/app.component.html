@@ -1,0 +1,10 @@
+<app-header-nav></app-header-nav>
+<div>
+	<h1>Route: {{ reallyGlobalState().currentRoute }}</h1>
+	<p>
+		App Component Counter: {{ reallyGlobalState().counter }}
+		<button (click)="incrementCounter()">Increment Counter</button>
+	</p>
+</div>
+
+<router-outlet />
