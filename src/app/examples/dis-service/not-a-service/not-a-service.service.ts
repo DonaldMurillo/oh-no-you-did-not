@@ -1,18 +1,18 @@
-import { computed, ElementRef, inject, linkedSignal } from '@angular/core';
+import { computed, inject, linkedSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouteNames } from '../../../constants/route-names';
 import {
-	ReallyGlobalState,
+	ReallyGlobalReactiveState,
 	reallyGlobalReactiveState,
-} from '../../really-global-state/really-global-state';
+} from '../../state/really-global-reactive-state';
 
 export const injectNotAService = () => {
 	const router = inject(Router);
 
-	const el = inject(ElementRef);
-	console.log(el);
-
-	const state = linkedSignal<ReallyGlobalState, ReallyGlobalState>({
+	const state = linkedSignal<
+		ReallyGlobalReactiveState,
+		ReallyGlobalReactiveState
+	>({
 		source: reallyGlobalReactiveState,
 		computation: (source, previous) => {
 			return {

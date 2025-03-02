@@ -66,10 +66,18 @@ interface NavItem {
 	],
 })
 export class HeaderNavComponent {
-	headerNav = signal<NavItem[]>([
+	readonly headerNav = signal<NavItem[]>([
+		{
+			path: routeNames.derivedState, // add new route item here
+			label: 'Home',
+		},
 		{
 			path: routeNames.disService,
 			label: 'Dis Service',
+		},
+		{
+			path: routeNames.myChildIsSoSmart,
+			label: 'My Child Is So Smart',
 		},
 	]);
 }

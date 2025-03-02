@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderNavComponent } from './components/header-nav.component';
-import { reallyGlobalReactiveState } from './examples/really-global-state/really-global-state';
+import { reallyGlobalReactiveState } from './examples/state/really-global-reactive-state';
 
 @Component({
 	selector: 'app-root',

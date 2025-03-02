@@ -1,14 +1,13 @@
 import { Routes } from '@angular/router';
 import { DisServiceComponent } from './examples/dis-service/dis-service.component';
-import { AppComponent } from './app.component';
 import { routeNames } from './constants/route-names';
 import { MyChildIsSoSmartComponent } from './examples/my-child-is-so-smart/my-child-is-so-smart.component';
+import { DerivedStateComponent } from './examples/state/derived-state/derived-state.component';
 
 export const routes: Routes = [
 	{
 		path: '',
-		redirectTo: routeNames.disService,
-		pathMatch: 'full',
+		component: DerivedStateComponent,
 	},
 	{
 		path: routeNames.disService,

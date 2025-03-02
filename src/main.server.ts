@@ -3,7 +3,7 @@ import { AppComponent } from './app/app.component';
 import { config } from './app/app.config.server';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { reallyGlobalReactiveState } from './app/examples/really-global-state/really-global-state';
+import { reallyGlobalReactiveState } from './app/examples/state/really-global-reactive-state';
 
 const bootstrap = () => {
 	return bootstrapApplication(AppComponent, config)

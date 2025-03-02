@@ -1,11 +1,11 @@
 import { signal } from '@angular/core';
 
-export type ReallyGlobalState = {
+export type ReallyGlobalReactiveState = {
 	currentRoute: string;
 	counter: number;
 };
 
-export const reallyGlobalReactiveState = signal<ReallyGlobalState>({
+export const reallyGlobalReactiveState = signal<ReallyGlobalReactiveState>({
 	currentRoute: '',
 	counter: 0,
 });
