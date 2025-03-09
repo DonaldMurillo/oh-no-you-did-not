@@ -1,1 +1,12 @@
-<p>toast works!</p>
+<div class="toast-container">
+	@for (toast of toasts(); track toast.id) {
+	<div
+		class="toast-item"
+		[class]="toast.type"
+		@toastAnimation
+		(click)="removeToast(toast.id)"
+	>
+		{{ toast.message }}
+	</div>
+	}
+</div>

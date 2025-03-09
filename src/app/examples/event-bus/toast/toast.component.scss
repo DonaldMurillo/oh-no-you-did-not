@@ -1,0 +1,38 @@
+.toast-container {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 8px;
+	pointer-events: none;
+}
+
+.toast-item {
+	padding: 12px 24px;
+	border-radius: 4px;
+	background: #333;
+	color: white;
+	min-width: 200px;
+	max-width: 400px;
+	pointer-events: auto;
+	cursor: pointer;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+	&.success {
+		background: #4caf50;
+	}
+
+	&.error {
+		background: #f44336;
+	}
+
+	&.warning {
+		background: #ff9800;
+	}
+
+	&.info {
+		background: #2196f3;
+	}
+}

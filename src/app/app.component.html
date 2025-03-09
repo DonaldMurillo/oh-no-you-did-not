@@ -5,7 +5,9 @@
 	<p>
 		App Component Counter: {{ reallyGlobalState().counter }}
 		<button (click)="incrementCounter()">Increment Counter</button>
+		<button (click)="randomToast()">Random Toast</button>
 	</p>
 </div>
 <!-- ROUTE RENDERING -->
 <router-outlet />
+<app-toast></app-toast>
