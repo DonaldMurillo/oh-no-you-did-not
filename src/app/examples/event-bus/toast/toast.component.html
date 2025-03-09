@@ -3,7 +3,7 @@
 	<div
 		class="toast-item"
 		[class]="toast.type"
-		@toastAnimation
+		[attr.data-id]="toast.id"
 		(click)="removeToast(toast.id)"
 	>
 		{{ toast.message }}

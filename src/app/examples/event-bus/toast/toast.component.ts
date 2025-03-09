@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { EventBusService } from '../event-bus.service';
 
 interface Toast {
@@ -15,23 +14,6 @@ interface Toast {
 	imports: [CommonModule],
 	templateUrl: './toast.component.html',
 	styleUrl: './toast.component.scss',
-	animations: [
-		trigger('toastAnimation', [
-			transition(':enter', [
-				style({ transform: 'translateY(100%)', opacity: 0 }),
-				animate(
-					'200ms ease-out',
-					style({ transform: 'translateY(0)', opacity: 1 })
-				),
-			]),
-			transition(':leave', [
-				animate(
-					'200ms ease-in',
-					style({ transform: 'translateY(100%)', opacity: 0 })
-				),
-			]),
-		]),
-	],
 })
 export class ToastComponent {
 	private readonly toastIdCounter = signal(0);
@@ -46,8 +28,10 @@ export class ToastComponent {
 				'You have mail!',
 				'Something happened.',
 			];
+			const types: Toast['type'][] = ['info', 'success', 'error', 'warning'];
 			const message = messages[Math.floor(Math.random() * messages.length)];
-			this.showToast(message);
+			const type = types[Math.floor(Math.random() * types.length)];
+			this.showToast(message, type);
 		});
 	}
 
@@ -64,8 +48,16 @@ export class ToastComponent {
 	}
 
 	removeToast(id: number) {
-		this.toasts.update((currentToasts) =>
-			currentToasts.filter((t) => t.id !== id)
+		const toastElement = document.querySelector(
+			`.toast-item[data-id="${id}"]`
 		);
+		if (toastElement) {
+			toastElement.classList.add('removing');
+			setTimeout(() => {
+				this.toasts.update((currentToasts) =>
+					currentToasts.filter((t) => t.id !== id)
+				);
+			}, 200); // Match animation duration
+		}
 	}
 }

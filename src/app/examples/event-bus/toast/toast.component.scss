@@ -1,6 +1,6 @@
 .toast-container {
 	position: fixed;
-	bottom: 20px;
+	top: 20px;
 	right: 20px;
 	z-index: 1000;
 	display: flex;
@@ -34,5 +34,39 @@
 
 	&.info {
 		background: #2196f3;
+	}
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slideOut {
+	from {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	to {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+}
+
+:host {
+	.toast-item {
+		animation: slideIn 200ms ease-out;
+	}
+
+	.toast-item.removing {
+		animation: slideOut 200ms ease-in forwards;
 	}
 }
