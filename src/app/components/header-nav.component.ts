@@ -22,6 +22,7 @@ interface NavItem {
 				<a
 					[routerLink]="item.path"
 					routerLinkActive="active"
+					[routerLinkActiveOptions]="{ exact: true }"
 					class="nav-link"
 				>
 					{{ item.label }}
@@ -81,6 +82,10 @@ export class HeaderNavComponent {
 		{
 			path: routeNames.myChildIsSoSmart,
 			label: 'My Child Is So Smart',
+		},
+		{
+			path: routeNames.injectFunction,
+			label: 'Inject Function',
 		},
 	]);
 
