@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventBusService } from '../event-bus.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface Toast {
 	id: number;
@@ -21,18 +22,27 @@ export class ToastComponent {
 	protected readonly toasts = signal<Toast[]>([]);
 
 	constructor() {
-		this.eventBus.on$<undefined>('randomToast').subscribe(() => {
-			const messages = [
-				'Hello, world!',
-				'This is a toast message.',
-				'You have mail!',
-				'Something happened.',
-			];
-			const types: Toast['type'][] = ['info', 'success', 'error', 'warning'];
-			const message = messages[Math.floor(Math.random() * messages.length)];
-			const type = types[Math.floor(Math.random() * types.length)];
-			this.showToast(message, type);
-		});
+		this.eventBus
+			.on$<undefined>('randomToast')
+			.pipe(takeUntilDestroyed())
+			.subscribe(() => {
+				const messages = [
+					'Hello, world!',
+					'This is a toast message.',
+					'You have mail!',
+					'Something happened.',
+				];
+				const types: Toast['type'][] = [
+					'info',
+					'success',
+					'error',
+					'warning',
+				];
+				const message =
+					messages[Math.floor(Math.random() * messages.length)];
+				const type = types[Math.floor(Math.random() * types.length)];
+				this.showToast(message, type);
+			});
 	}
 
 	showToast(message: string, type: Toast['type'] = 'info') {

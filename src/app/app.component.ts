@@ -24,6 +24,9 @@ export class AppComponent {
 		}));
 	}
 
+	/**
+	 * Emit a random toast event.
+	 */
 	randomToast() {
 		this.eventBus.emit('randomToast', undefined);
 	}

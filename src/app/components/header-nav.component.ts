@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, Directive, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { routeNames } from '../constants/route-names';
+import { EventBusService } from '../examples/event-bus/event-bus.service';
 
 interface NavItem {
 	path: string;
@@ -26,6 +27,7 @@ interface NavItem {
 					{{ item.label }}
 				</a>
 				}
+				<button (click)="randomToast()">Random Toast</button>
 			</nav>
 		</header>
 	`,
@@ -66,6 +68,7 @@ interface NavItem {
 	],
 })
 export class HeaderNavComponent {
+	private readonly eventBus = inject(EventBusService);
 	readonly headerNav = signal<NavItem[]>([
 		{
 			path: routeNames.derivedState, // add new route item here
@@ -80,4 +83,8 @@ export class HeaderNavComponent {
 			label: 'My Child Is So Smart',
 		},
 	]);
+
+	randomToast() {
+		this.eventBus.emit('randomToast', undefined);
+	}
 }
